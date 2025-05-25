@@ -105,8 +105,8 @@ function EnhancedTableHead(props) {
 	};
 
 	return (
-		<TableHead>
-			<TableRow sx={{ backgroundColor: "gray" }}>
+		<TableHead sx={{ backgroundColor: "white" }}>
+			<TableRow>
 				<TableCell padding="checkbox">
 					<Checkbox
 						color="primary"
@@ -116,7 +116,6 @@ function EnhancedTableHead(props) {
 						inputProps={{
 							"aria-label": "select all desserts",
 						}}
-						sx={{ backgroundColor: "blue" }}
 					/>
 				</TableCell>
 				{headCells.map((headCell) => (
@@ -130,7 +129,6 @@ function EnhancedTableHead(props) {
 							active={orderBy === headCell.id}
 							direction={orderBy === headCell.id ? order : "asc"}
 							onClick={createSortHandler(headCell.id)}
-							sx={{ backgroundColor: "red" }}
 						>
 							{headCell.label}
 							{orderBy === headCell.id ? (
@@ -279,8 +277,8 @@ export default function MyLeaves() {
 	);
 
 	return (
-		<Box sx={{ width: "100%" }}>
-			<Paper sx={{ width: "100%", mb: 2 }}>
+		<Paper sx={{ width: "99%" }} elevation={2}>
+			<Paper sx={{ width: "100%", mb: 2 }} elevation={0}>
 				<EnhancedTableToolbar numSelected={selected.length} />
 				<TableContainer>
 					<Table
@@ -327,7 +325,6 @@ export default function MyLeaves() {
 											scope="row"
 											// padding="none"
 											align="center"
-											sx={{ backgroundColor: "yellow" }}
 										>
 											{row.id}
 										</TableCell>
@@ -406,6 +403,6 @@ export default function MyLeaves() {
 					onRowsPerPageChange={handleChangeRowsPerPage}
 				/>
 			</Paper>
-		</Box>
+		</Paper>
 	);
 }

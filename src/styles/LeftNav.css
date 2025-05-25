@@ -1,21 +1,21 @@
 .left-nav-wrapper{
     width: 15%;
     height: 100%;
-    background-color: #f0f0f0;
+    background-color: white;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 10px;
 }
 .left-nav-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
+    /* background-color: red; */
 }
 .nav-item {
-    background-color: red;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     gap: 10px;
     width: 100%;
@@ -24,5 +24,12 @@
     cursor: pointer;
     border-radius: 5px;
     margin-bottom: 10px;
+    border-radius: 20px;
     transition: background-color 0.3s ease;
+}
+.nav-icon{
+    color: white;
+}
+.nav-text{
+    color:white
 }
