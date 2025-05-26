@@ -22,6 +22,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
 import EditIcon from "@mui/icons-material/Edit";
+import AddIcon from "@mui/icons-material/Add";
+import { Button } from "@mui/material";
+import { useMain } from "../context/MainContext";
 
 function createData(id, startDate, endDate, leaveType, noOfDays, status) {
 	return {
@@ -157,6 +160,7 @@ EnhancedTableHead.propTypes = {
 };
 
 function EnhancedTableToolbar(props) {
+	const { applyLeaveMenu, setApplyLeaveMenu } = useMain();
 	const { numSelected } = props;
 	return (
 		<Toolbar
@@ -193,6 +197,35 @@ function EnhancedTableToolbar(props) {
 					My Leaves
 				</Typography>
 			)}
+			<Button
+				sx={{
+					marginRight: 1,
+					width: "190px",
+					display: "flex",
+					alignItems: "center",
+				}}
+				variant="contained"
+				color="primary"
+				onClick={() => setApplyLeaveMenu(!applyLeaveMenu)}
+			>
+				<AddIcon
+					sx={{
+						marginLeft: 1,
+						// backgroundColor: "red",
+						fontSize: "1.5rem",
+					}}
+				/>
+				<Typography
+					sx={{
+						marginLeft: 1,
+						// width: "7em",
+						// backgroundColor: "red",
+						fontSize: "0.9rem",
+					}}
+				>
+					Apply Leave
+				</Typography>
+			</Button>
 			{numSelected > 0 ? (
 				<Tooltip title="Delete">
 					<IconButton>
@@ -277,7 +310,7 @@ export default function MyLeaves() {
 	);
 
 	return (
-		<Paper sx={{ width: "99%" }} elevation={2}>
+		<Paper sx={{ width: "98.5%", padding: "0 10px" }} elevation={2}>
 			<Paper sx={{ width: "100%", mb: 2 }} elevation={0}>
 				<EnhancedTableToolbar numSelected={selected.length} />
 				<TableContainer>
@@ -370,7 +403,7 @@ export default function MyLeaves() {
 													display: "flex",
 													justifyContent: "center",
 													alignItems: "center",
-													backgroundColor: "pink",
+													// backgroundColor: "pink",
 												}}
 											>
 												<IconButton sx={{ padding: 0 }}>

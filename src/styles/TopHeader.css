@@ -29,6 +29,7 @@
 }
 .menu-icon{
     cursor: pointer;
+    color:white
 }
 .profile-image{
     width: 40px;
@@ -39,5 +40,6 @@
     cursor: pointer;
 }
 .logo-text{
-    color: white
+    color:white;
+    font-weight: 900;
 }

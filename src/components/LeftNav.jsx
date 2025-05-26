@@ -1,12 +1,14 @@
-import { Box, Paper } from "@mui/material";
+import { Box, Button, List, ListItem, Paper } from "@mui/material";
 import React from "react";
 import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { FaScaleBalanced } from "react-icons/fa6";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ApprovalIcon from "@mui/icons-material/Approval";
+import SettingsIcon from "@mui/icons-material/Settings";
 import "../styles/LeftNav.css"; // Assuming you have a CSS file for styles
 import { useMain } from "../context/MainContext"; // Adjust the import path as necessary
+import { useNavigate } from "react-router";
 const drawerWidth = 200;
 const drawerMenuItems = [
 	{
@@ -20,10 +22,11 @@ const drawerMenuItems = [
 		icon: <CalendarMonthIcon className="nav-icon" />,
 	},
 	{ id: 3, label: "Approvals", icon: <ApprovalIcon className="nav-icon" /> },
-	{ id: 4, label: "Settings", icon: <CheckCircleIcon className="nav-icon" /> },
+	{ id: 4, label: "Settings", icon: <SettingsIcon className="nav-icon" /> },
 ];
 const LeftNav = () => {
-	const { openDrawer } = useMain();
+	const navigate = useNavigate();
+	const { openDrawer, currScr, setCurrScr } = useMain();
 	return (
 		<Paper
 			elevation={3}
@@ -34,37 +37,46 @@ const LeftNav = () => {
 				display: openDrawer ? "block" : "none",
 				transition: "display 0.3s ease",
 				borderRadius: 0,
+				boxShadow: 3,
 			}}
 		>
-			<Box className="left-nav-container">
+			<List className="left-nav-container">
 				{drawerMenuItems.map((item) => (
-					<Paper
-						elevation={1}
+					<ListItem
+						button
 						key={item.id}
 						className="nav-item"
-						sx={{ backgroundColor: "secondary.main" }}
+						sx={{
+							backgroundColor:
+								currScr === item.label ? "primary.main" : "background.white",
+							color:
+								currScr === item.label ? "background.white" : "primary.main",
+							"&:hover": {
+								backgroundColor: "primary.light",
+								color: "background.white",
+							},
+						}}
+						onClick={() => {
+							if (item.label === "Dashboard") {
+								navigate("/");
+								setCurrScr("Dashboard");
+							} else if (item.label === "Holidays") {
+								navigate("/holidays");
+								setCurrScr("Holidays");
+							} else if (item.label === "Approvals") {
+								navigate("/approvals");
+								setCurrScr("Approvals");
+							} else if (item.label === "Settings") {
+								navigate("/settings");
+								setCurrScr("Settings");
+							}
+						}}
 					>
 						{item.icon}
-						<span className="nav-text">{item.label}</span>
-					</Paper>
+						<span sx={{ color: "primary.main" }}>{item.label}</span>
+					</ListItem>
 				))}
-				{/* <Box className="nav-item" sx={{ backgroundColor: "primary.main" }}>
-					<SpaceDashboardIcon className="nav-icon" />
-					<span className="nav-text">Dashboard</span>
-				</Box>
-				<Box className="nav-item" sx={{ backgroundColor: "primary.main" }}>
-					<CalendarMonthIcon className="nav-icon" />
-					<span className="nav-text">Calendar</span>
-				</Box>
-				<Box className="nav-item" sx={{ backgroundColor: "primary.main" }}>
-					<FaScaleBalanced className="nav-icon" />
-					<span className="nav-text">Reports</span>
-				</Box>
-				<Box className="nav-item" sx={{ backgroundColor: "primary.main" }}>
-					<CheckCircleIcon className="nav-icon" />
-					<span className="nav-text">Settings</span>
-				</Box> */}
-			</Box>
+			</List>
 		</Paper>
 	);
 };

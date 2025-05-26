@@ -1,23 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Dashboard from './screens/Dashboard';
 import './styles/App.css'
 import { Box, Typography } from '@mui/material';
 import TopHeader from './components/TopHeader';
 import LeftNav from './components/LeftNav';
 import { useState } from 'react';
-import { MainProvider } from './context/MainContext';
+
+import { Route, Routes } from 'react-router';
+import HolidayTable from './screens/HolidayTable';
+import { useMain } from './context/MainContext';
 
 function App() {
+  const {currScr,setCurrScr} =useMain()
+  useEffect(() => {
+    setCurrScr("Dashboard");
+  }
+  , []);
   return (
-    <MainProvider>
     <Box className="main-container">
       <TopHeader />
-      <Box className="content-container">
+      <Box className="content-container" sx={{backgroundColor: "background.white"}}>
         <LeftNav />
-        <Dashboard />
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/holidays" element={<HolidayTable />} />
+        {/* <Dashboard /> */}
+        </Routes>
       </Box>
     </Box>
-    </MainProvider>
   );
 }
 

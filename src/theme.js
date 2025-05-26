@@ -2,22 +2,25 @@
 import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
+  typography: {
+     fontFamily: "Poppins, sans-serif"
+  },
   palette: {
     mode: 'light',
     primary: {
-      main: '#1565c0',
+      main: '#1e3d58',
     },
     secondary: {
-      main: '#1976d2',
+      main: '#057dcd',
     },
     background: {
-      default: '#f0f2f5', // Soft gray background
-      row1: '#eaf4fb',
-      row2:'#f1f8ff'
+      default: '#bfdff1',
+      white: '#e8eef1'
     },
     text: {
-      primary: '#212121',
-      header: '#0d1b2a'
+      primary: '#1F384C',
+      header: '#0d1b2a',
+      lightGrey: '#273240'
     },
     success: {
       main: '#2e7d32',

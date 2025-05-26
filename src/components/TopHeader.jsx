@@ -32,25 +32,10 @@ const TopHeader = () => {
 				</IconButton>
 				{/* <img src={logo} alt="company-logo" /> */}
 				<Typography variant="h6" className="logo-text">
-					LMS
+					LeaveTrack
 				</Typography>
 			</Box>
-			{/* <Box className="menu-container">
-				<Box className="link-container">
-					<Typography variant="h6" className="menu-item">
-						Dashboard
-					</Typography>
-					<Typography variant="h6" className="menu-item">
-						Calendar
-					</Typography>
-					<Typography variant="h6" className="menu-item">
-						Reports
-					</Typography>
-					<Typography variant="h6" className="menu-item">
-						Settings
-					</Typography>
-				</Box>
-			</Box> */}
+
 			<Box className="profile-container">
 				<Avatar alt="profile-image" src={anu} />
 			</Box>
